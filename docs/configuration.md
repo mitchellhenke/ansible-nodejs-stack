@@ -93,14 +93,14 @@ The dir where all your projects will be stored. This is relative to the $HOME of
 
 ##### setup_postgres
 
-If you app doesn't require postgres, set this option to `False`.
+If your app doesn't require postgres, set this option to `False`.
 
 * Default: `True`
 * Possible values: `True`, `False`
 
 ##### use_ecto
 
-If you app doesn't use Ecto, set this option to `False`.
+If your app doesn't use Ecto, set this option to `False`.
 
 * Default: `True`
 * Possible values: `True`, `False`
