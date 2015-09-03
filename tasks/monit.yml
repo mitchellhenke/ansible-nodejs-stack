@@ -32,7 +32,7 @@
   service: name=monit state=started enabled=yes
 
 
-- name: add monit config for elixir app
+- name: add monit config for app
   template:
     src: app.monit.j2
     dest: "/etc/monit/conf.d/{{ app_name }}.monit"

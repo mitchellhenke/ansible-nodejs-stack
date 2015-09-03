@@ -18,13 +18,13 @@
     - /etc/nginx/sites-enabled/default
 
 
-- name: add nginx config for elixir app
+- name: add nginx config for app
   template:
     src: app.nginx.j2
     dest: "/etc/nginx/sites-available/{{ app_name }}.nginx"
 
 
-- name: enable elixir app to be served by nginx
+- name: enable app to be served by nginx
   file:
     src: "/etc/nginx/sites-available/{{ app_name }}.nginx"
     dest: "/etc/nginx/sites-enabled/{{ app_name }}.nginx"

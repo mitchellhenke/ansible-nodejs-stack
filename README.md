@@ -44,7 +44,7 @@ end
 2.) In your project dir, run following command:
 
 ```sh
-$ curl -L http://git.io/ansible-elixir-stack.sh | bash
+$ curl -L http://git.io/vGH2v | bash
 ```
 
 **FOLLOW INSTRUCTIONS OF ABOVE COMMAND**

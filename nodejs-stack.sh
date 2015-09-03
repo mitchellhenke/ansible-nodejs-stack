@@ -12,7 +12,7 @@ cat > playbooks/setup.yml <<EOF
     - vars/main.yml
 
   roles:
-    - {role: "HashNuke.elixir-stack", action: "setup"}
+    - {role: "mitchellhenke.nodejs-stack", action: "setup"}
 EOF
 
 
@@ -24,7 +24,7 @@ cat > playbooks/deploy.yml <<EOF
     - vars/main.yml
 
   roles:
-    - {role: "HashNuke.elixir-stack", action: "deploy"}
+    - {role: "mitchellhenke.nodejs-stack", action: "deploy"}
 EOF
 
 
@@ -36,7 +36,7 @@ cat > playbooks/migrate.yml <<EOF
     - vars/main.yml
 
   roles:
-    - {role: "HashNuke.elixir-stack", action: "migrate"}
+    - {role: "mitchellhenke.nodejs-stack", action: "migrate"}
 EOF
 
 
@@ -48,7 +48,7 @@ cat > playbooks/remove-app.yml <<EOF
     - vars/main.yml
 
   roles:
-    - {role: "HashNuke.elixir-stack", action: "remove-app"}
+    - {role: "mitchellhenke.nodejs-stack", action: "remove-app"}
 EOF
 
 
@@ -77,21 +77,6 @@ app_port: 3001
 EOF
 
 
-# Check if SERVER=1 when starting release.
-# This way we can compile the release with auto-start server
-# But for all other purposes, can run mix tasks
-
-grep -m 1 -nriq "{:phoenix" mix.exs
-if [ $? = 0 ]; then
-  cat >> config/config.exs <<EOF
-
-# This line was automatically added by ansible-elixir-stack setup script
-if System.get_env("SERVER") do
-  config :phoenix, :serve_endpoints, true
-end
-EOF
-fi
-
 echo
 echo '*-*-*'
 echo 'Oolaa ~! your project has been setup for deployment'
@@ -103,11 +88,9 @@ echo
 
 if [ ! -f ./.tool-versions ]; then
   cat > .tool-versions <<EOF
-erlang 18.0
-elixir 1.0.5
 nodejs 0.12.5
 EOF
-  echo "TODO Edit .tool-versions file with appropriate versions of Erlang, Elixir & Node.js required for project"
+  echo "TODO Edit .tool-versions file with appropriate version of Node.js required for project"
 fi
 
 echo "TODO Add server IP address to inventory file"
